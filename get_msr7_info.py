@@ -4,7 +4,7 @@
 from bs4 import BeautifulSoup
 import urllib2
 from time import sleep
-
+import socket
 
 class get_msr7_info():
     def __init__(self):
@@ -18,7 +18,16 @@ class get_msr7_info():
         try:
             try:
                 urlhandle = urllib2.urlopen(request, None, timeout=20)
-            except Exception:
+            except urllib2.URLError, e:
+                if isinstance(e.reason, socket.timeout):
+                    print "Urllib Socket error!!!!"
+                else:
+                    raise
+            except socket.timeout, e:
+                print "Socket error!!!"
+                sleep(3)
+                return
+            else:
                 sleep(3)
                 return
         except Exception:
@@ -39,7 +48,16 @@ class get_msr7_info():
         try:
             try:
                 urlhandle = urllib2.urlopen(request, None, timeout=20)
-            except Exception:
+            except urllib2.URLError, e:
+                if isinstance(e.reason, socket.timeout):
+                    print "Urllib Socket error!!!!"
+                else:
+                    raise
+            except socket.timeout, e:
+                print "Socket error!!!"
+                sleep(3)
+                return
+            else:
                 sleep(3)
                 return
         except Exception:

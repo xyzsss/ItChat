@@ -28,7 +28,7 @@ while True:
     re = get_msr7_info.get_msr7_info()
     msr7_info = re.get_result()
     if msr7_info == "NO":
-        pass
+        itchat.send('.Unchaged.', 'exuxus')
         # message_content = u"233"
     else:
         message_front = '\n' + time_now
@@ -36,12 +36,12 @@ while True:
         message_content = msr7_info
         message_value = message_front + message_content + message_end
         itchat.send(message_value, 'exuxus')
-    sleep(sleep_time)
     current_timestamp = int(time())
     if (current_timestamp - start_while_time) / heart_report_time >= 1:
         running_days += 1
         itchat.send(u"WXRobot running for " + str(running_days/2.0) + u" days .", 'exuxus')
         start_while_time = current_timestamp
+    sleep(sleep_time)
 
 itchat.send('Monitor the msr7 has stopped !!!', 'exuxus')
 print 'Exit not....'

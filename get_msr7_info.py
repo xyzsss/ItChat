@@ -71,8 +71,8 @@ class get_msr7_info():
         return shop_status_2
 
     def get_result(self):
-        shop_status_1 = self.get_black()
-        shop_status_2 = self.get_red()
+        shop_status_1 = self.get_black() if self.get_black() is None else ''
+        shop_status_2 = self.get_red() if self.get_red() is None else ''
         if shop_status_2 == u"即將開售" and shop_status_1 == u"到貨通知":
             message_result = 'NO'
         else:

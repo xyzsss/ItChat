@@ -13,8 +13,8 @@ elif platform == "win32":
     itchat.auto_login(enableCmdQR=True)
 
 # script running time interval
-# slee_time         : running interval time
-# heart_report_time : report time interval for check service status
+# slee_time         : default to 3600, running interval time
+# heart_report_time : default to 36000. report time interval for check service status
 sleep_time = 3600
 heart_report_time = 43200
 running_days = 0
@@ -28,7 +28,7 @@ while True:
     re = get_msr7_info.get_msr7_info()
     msr7_info = re.get_result()
     if msr7_info == "NO":
-        itchat.send('.Unchaged.', 'exuxus')
+        itchat.send(datetime.datetime.now().strftime("%Y-%m-%d %I:%M:%S %p") + '\n.Unchaged.', 'exuxus')
         # message_content = u"233"
     else:
         message_front = '\n' + time_now
